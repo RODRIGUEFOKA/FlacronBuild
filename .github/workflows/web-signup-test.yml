@@ -13,9 +13,9 @@ jobs:
         with:
          command: npm run test:homewoner-signup-test
          browser: firefox
+         working-directory: Web-Automatio
         env:
           CYPRESS_CACHE_FOLDER: ~/.cache/Cypress
-          working-directory: Web-Automatio
       - name: SignUp Test Report
       - uses: actions/upload-artifact@v4
         with:
