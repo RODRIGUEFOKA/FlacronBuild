@@ -1,0 +1,18 @@
+{
+  "homeowner": {
+    "monthly": "$19.99",
+    "yearly": "$199.99"
+  },
+  "contractor": {
+    "monthly": "$97.99",
+    "yearly": "$999.99"
+  },
+  "inspector": {
+    "monthly": "$97.99",
+    "yearly": "$999.99"
+  },
+  "insurance adjuster": {
+    "monthly": "$97.99",
+    "yearly": "$999.99"
+  }
+}
