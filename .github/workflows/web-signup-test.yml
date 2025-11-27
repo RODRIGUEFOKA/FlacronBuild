@@ -1,12 +1,17 @@
-name: Test On Chrome Browser
+name: example-start-and-yarn-workspaces
 on: push
 jobs:
-  chrome:
-    runs-on: ubuntu-22.04
-    name: E2E on Chrome
+  single:
+    # the example has Yarn workspace in its "root" folder
+    # examples/start-and-yarn-workspaces
+    # and tests in a subfolder like "workspace-1"
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v3
-      - uses: cypress-io/github-action@v5
+      - uses: actions/checkout@v5
+      - uses: cypress-io/github-action@v6
         with:
-         
-         command: npm run test:browser
+          working-directory: FlacronBuild/Web-Automatio
+
+          build: yarn run build
+          start: yarn start
+          wait-on: 'http://localhost:5000'
