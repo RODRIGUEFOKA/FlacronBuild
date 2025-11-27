@@ -1,46 +1,43 @@
-name: End-to-end tests
+name: HomeOwner SignUp tests
 
 on:
   push:
     branches:
-      - web-signup-tests   # your branch
+      - web-signup-tests
 
 jobs:
   cypress-run:
     runs-on: ubuntu-24.04
 
     steps:
-      # 1. Checkout repo
       - name: Checkout repository
         uses: actions/checkout@v5
 
-      # 2. Set Node version
-      - name: Use Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
-      # 3. Go inside your QA folder (important!)
-      - name: Change to Web-Automatio folder
-        run: cd Web-Automatio
-
-      # 4. Install dependencies
-      - name: Install dependencies
+      # MANUAL INSTALL (fixes npm ci failure)
+      - name: Install dependencies manually
         working-directory: Web-Automatio
         run: npm install
 
-      # 5. Run Cypress test with custom script + browser selection
-      - name: Run Cypress Tests
+      - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
           working-directory: Web-Automatio
-          command: npm run test:homewoner-signup-test
-          browser: firefox
-        env:
-          CYPRESS_CACHE_FOLDER: ~/.cache/Cypress
 
-      # 6. Upload Mochawesome HTML reports
-      - name: Upload Mochawesome Reports
+          # IMPORTANT – disable npm ci from Cypress Action
+          install: false
+
+          # Correct script name (your package.json uses "homewoner")
+          command: npm run test:homewoner-signup-test
+
+          # Browser selection
+          browser: firefox  
+
+      - name: Upload HTML Reports
         uses: actions/upload-artifact@v4
         with:
           name: homeowner-signup-report
