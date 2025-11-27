@@ -43,5 +43,5 @@ jobs:
       - name: Upload Mochawesome Reports
         uses: actions/upload-artifact@v4
         with:
-          name: homeowner-signup-report
+          name: HomeOwner-SignUp-Report
           path: Web-Automatio/cypress/reports/html
