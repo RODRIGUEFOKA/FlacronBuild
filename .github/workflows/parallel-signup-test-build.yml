@@ -29,8 +29,7 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           working-directory: Web-Automatio
-          command: npm run test:homeowner-signup-test
-
+          command: npm run test:homewoner-signup-test
       - name: Upload Report
         uses: actions/upload-artifact@v4
         with:
@@ -116,7 +115,7 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           working-directory: Web-Automatio
-          command: npm run test:insuranceAdjusterSignUpTest
+          command: npm run test:insuranceAdjusterSignUpTest-signup-test
 
       - name: Upload Report
         uses: actions/upload-artifact@v4
