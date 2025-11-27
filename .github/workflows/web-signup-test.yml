@@ -1,5 +1,4 @@
 name: HomeOwner SignUp tests
-
 on:
   push:
     branches:
@@ -14,32 +13,32 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
 
-      # Node environment
+      # Setup Node
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      # Install dependencies manually (NOT using npm ci)
+      # Manual install instead of npm ci
       - name: Install dependencies
         working-directory: Web-Automatio
         run: npm install
 
-      # Run Cypress using GitHub Action
+      # Run Cypress
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
           working-directory: Web-Automatio
 
-          # 🔥 REQUIRED – disables npm ci automatically
+          # 🔥 This is the KEY to stopping npm ci
           install: false
 
-          # Correct test script (your actual script name)
+          # Your test script
           command: npm run test:homewoner-signup-test
 
-      # Upload reports
-      - name: Upload Mochawesome Report
+      # Upload report
+      - name: Upload report
         uses: actions/upload-artifact@v4
         with:
-          name: mochawesome-report
+          name: mochawesome-html-report
           path: Web-Automatio/cypress/reports/html
