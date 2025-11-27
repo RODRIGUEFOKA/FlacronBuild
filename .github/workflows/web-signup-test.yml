@@ -19,7 +19,7 @@ jobs:
 
       # Run Cypress without auto-install
       - name: Run Cypress Tests
-        uses: cypress-io/github-action@v6
+        uses: cypress-io/github-action@v5
         with:
           working-directory: ./Web-Automatio
           install: false
