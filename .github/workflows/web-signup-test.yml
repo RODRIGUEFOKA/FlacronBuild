@@ -11,7 +11,7 @@ jobs:
       - uses: cypress-io/github-action@v6
         with:
           working-directory: FlacronBuild/Web-Automatio
-
+          browser: chrome
           build: yarn run build
           start: yarn start
           wait-on: 'http://localhost:5000'
