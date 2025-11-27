@@ -1,46 +1,47 @@
-on: push
+name: End-to-end tests
+
+on:
+  push:
+    branches:
+      - web-signup-tests   # your branch
+
 jobs:
   cypress-run:
-    # Use the latest Ubuntu version for the runner environment
-    runs-on: ubuntu-latest 
-    
-    # Set the working directory for all 'run' commands in this job to the project folder
-    defaults:
-      run:
-        working-directory: Web-Automatio
-        
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+    runs-on: ubuntu-24.04
 
-      # 1. Setup Node.js Environment (Required for npm and Cypress)
-      - name: Setup Node.js
+    steps:
+      # 1. Checkout repo
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      # 2. Set Node version
+      - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 18
 
-      # 2. Install dependencies (Runs inside Web-Automatio due to 'defaults' block)
-      - name: Install Dependencies
-        # --- EDITED: Added --loglevel verbose to debug exit code 1 failure ---
-        run: npm install --loglevel verbose
+      # 3. Go inside your QA folder (important!)
+      - name: Change to Web-Automatio folder
+        run: cd Web-Automatio
 
-      # 3. Run Cypress Tests
-      - name: Cypress run
+      # 4. Install dependencies
+      - name: Install dependencies
+        working-directory: Web-Automatio
+        run: npm install
+
+      # 5. Run Cypress test with custom script + browser selection
+      - name: Run Cypress Tests
         uses: cypress-io/github-action@v6
         with:
-         # CRITICAL FIX 1: Use the correct input for the project path.
-         working-directory: Web-Automatio 
-         # CRITICAL FIX 2: Set install to false to prevent the failing 'npm ci' command.
-         install: false
-         command: npm run test:homewoner-signup-test 
-         browser: firefox
+          working-directory: Web-Automatio
+          command: npm run test:homeowner-signup-test
+          browser: firefox
         env:
           CYPRESS_CACHE_FOLDER: ~/.cache/Cypress
 
-      # 4. Upload Report Artifact
-      - name: Upload Signup Test Report
+      # 6. Upload Mochawesome HTML reports
+      - name: Upload Mochawesome Reports
         uses: actions/upload-artifact@v4
         with:
-         name: Signup Mochawesome HTML Report 
-         # Path is relative to the repository root.
-         path: Web-Automatio/cypress/reports/html
+          name: homeowner-signup-report
+          path: Web-Automatio/cypress/reports/html
