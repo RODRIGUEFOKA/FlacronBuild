@@ -118,7 +118,7 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           working-directory: Web-Automatio
-          command: npm run test:insuranceAdjusterSignUpTest-signup-test
+          command: npm run test:insuranceAdjuster-signup-test
           browser: firefox
 
       - name: Upload Report
