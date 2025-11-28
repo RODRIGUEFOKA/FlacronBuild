@@ -42,6 +42,7 @@ jobs:
       # 6. Upload Mochawesome HTML reports
       - name: Upload Mochawesome Reports
         uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: HomeOwner-SignUp-Report
           path: Web-Automatio/cypress/reports/html
