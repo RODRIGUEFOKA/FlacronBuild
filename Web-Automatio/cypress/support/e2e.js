@@ -18,5 +18,4 @@ import './commands'
 import './randomSelectDropdownMenu'
 import 'cypress-mochawesome-reporter/register';
 
-require('cypress-terminal-report/src/installLogsCollector')();
 
