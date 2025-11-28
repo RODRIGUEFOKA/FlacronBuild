@@ -24,7 +24,7 @@ const profilePageObj = new profileSettingPage()
 import signUpData from '../../../fixtures/signUpData.json' //import data file
  
 
-describe('Test SignUp Flow of Contractor' ,()=>{
+describe('Test SignUp Flow of Inspector' ,()=>{
        it('User selects plan Inspector and verifies on review page with valid data', ()=>{
 
        cy.log("======= Testing Login ======")

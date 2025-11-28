@@ -26,7 +26,7 @@ import yourProfilePageData from '../../../fixtures/yourProfilePageData.json' //i
 
  
 
-describe('Test SignUp Flow' ,()=>{
+describe('Test SignUp Flow for HomeOwner' ,()=>{
        it('User selects plan HomeOwner and verifies on review page with valid data', ()=>{
 
        cy.log("======= Testing Login ======")

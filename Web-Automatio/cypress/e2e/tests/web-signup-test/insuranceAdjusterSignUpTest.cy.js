@@ -24,7 +24,7 @@ const profilePageObj = new profileSettingPage()
 import signUpData from '../../../fixtures/signUpData.json' //import data file
  
 
-describe('Test SignUp Flow of Contractor' ,()=>{
+describe('Test SignUp Flow of Insurnce Adjuster' ,()=>{
        it('User selects plan Insurnce Adjuster and verifies on review page with valid data', ()=>{
 
        cy.log("======= Testing Login ======")
@@ -99,6 +99,7 @@ describe('Test SignUp Flow of Contractor' ,()=>{
        ProfileObj.selectRandomClaimTypesHandledOptions()
        ProfileObj.enterJurisdictionLocation(faker.location.secondaryAddress())
             
+        cy.wait(1000)
        ProfileObj.clickNext()
      
 

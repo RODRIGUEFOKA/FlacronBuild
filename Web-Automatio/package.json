@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test:homewoner-signup-test": "npx cypress run --spec cypress/e2e/tests/web-signup-test/homeOwnerSignUpTest.cy.js",
+    "test:homeowner-signup-test": "npx cypress run --spec cypress/e2e/tests/web-signup-test/homeOwnerSignUpTest.cy.js",
     "test:contractor-signup-test": "npx cypress run --spec cypress/e2e/tests/web-signup-test/contractorSignUpTest.cy.js",
     "test:inspector-signup-test": "npx cypress run --spec cypress/e2e/tests/web-signup-test/inspectorSignUpTest.cy.js",
-    "test:insuranceAdjusterSignUpTest-signup-test": "npx cypress run --spec cypress/e2e/tests/web-signup-test/insuranceAdjusterSignUpTest.cy.js",
+    "test:insuranceAdjuster-signup-test": "npx cypress run --spec cypress/e2e/tests/web-signup-test/insuranceAdjusterSignUpTest.cy.js",
     "test": "npx cypress run --record --key cc5ae977-6be8-487f-a91b-75e9dc308d31"
   },
   "repository": {
@@ -27,7 +27,10 @@
     "cypress-mochawesome-reporter": "^4.0.2",
     "cypress-plugin-stripe-elements": "^1.0.2",
     "cypress-split": "^1.24.25",
-    "faker": "^5.5.3"
+    "cypress-terminal-report": "^7.3.3",
+    "faker": "^5.5.3",
+    "mochawesome-merge": "^5.1.0",
+    "mochawesome-report-generator": "^6.3.2"
   },
   "dependencies": {
     "google-auth-library": "^10.5.0"

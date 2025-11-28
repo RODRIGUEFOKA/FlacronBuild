@@ -13,7 +13,7 @@
 
     */
 
-        Cypress.Commands.add('selectRandomOption', (selector) => {
+      Cypress.Commands.add('selectRandomOption', (selector) => {
       cy.get(selector)
         .find('option')
         .its('length')
