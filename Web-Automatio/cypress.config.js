@@ -1,9 +1,5 @@
 const { defineConfig } = require("cypress");
 
-const { defineConfig } = require("cypress");
-const terminalReport = require('cypress-terminal-report/src/installLogs');
-
-
 module.exports = defineConfig({
 
   reporter: 'cypress-mochawesome-reporter',
@@ -14,8 +10,7 @@ module.exports = defineConfig({
     html: true,
     json: true, // Generate JSON report
     reportFilename: '[name]',  // Use ONLY [timestamp]
-    reportPageTitle: 'SignUp Test Report',
-    reportDir: 'cypress/custom-reports',
+    reportPageTitle: 'Test Report',
     embeddedScreenshots: true,
     inlineAssets: true,
 
@@ -31,8 +26,7 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
        require('cypress-mochawesome-reporter/plugin')(on);
-       terminalReport(on, config);
-       return config;
+        // Register the "log" task for cy.task()
    
     },
        
