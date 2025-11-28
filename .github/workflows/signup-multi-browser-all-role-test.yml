@@ -32,7 +32,11 @@ jobs:
           working-directory: Web-Automatio
           install: false
           browser: ${{ matrix.browser }}
-          spec: "**/*.cy.js"
+          spec: |
+            cypress/e2e/test/web-signup-test/homeOwnerSignUpTest.cy.js,
+            cypress/e2e/test/web-signup-test/contractorSignUpTest.cy.js,
+            ccypress/e2e/test/web-signup-test/inspectorSignUpTest.cy.js,
+            cypress/e2e/test/web-signup-test/insuranceAdjusterSignUpTest.cy.js
 
       - name: Upload Mochawesome Reports
         uses: actions/upload-artifact@v4
