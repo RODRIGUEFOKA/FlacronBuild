@@ -1,5 +1,6 @@
 const { defineConfig } = require("cypress");
 
+const { defineConfig } = require("cypress");
 const terminalReport = require('cypress-terminal-report/src/installLogs');
 
 
