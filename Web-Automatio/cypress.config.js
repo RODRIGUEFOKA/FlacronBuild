@@ -2,47 +2,33 @@ const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
 
-  reporter: 'cypress-mochawesome-reporter',
+  reporter: "cypress-mochawesome-reporter",
   video: true,
-  
-  reporterOptions: {
-    overwrite: false, 
-    html: true,
-    json: true, // Generate JSON report
-    reportFilename: '[name]',  // Use ONLY [timestamp]
-    reportPageTitle: 'Test Report',
-    embeddedScreenshots: true,
-    inlineAssets: true,
 
-    
+  reporterOptions: {
+    overwrite: false,
+    html: true,
+    json: true,                 // Generate JSON report
+    reportFilename: "[name]"+ `report-${new Date().toISOString().replace(/[:.]/g, '-')}`,  
+    reportPageTitle: "Test Report",
+    embeddedScreenshots: true,
+    inlineAssets: true
   },
-    projectId: "2hxc8g",
+
+  projectId: "2hxc8g",
 
   e2e: {
+    chromeWebSecurity: false,
+    experimentalStudio: true,
 
-     chromeWebSecurity: false,
-  
-    experimentalStudio:true,
     setupNodeEvents(on, config) {
-      // implement node event listeners here
-       require('cypress-mochawesome-reporter/plugin')(on);
-        // Register the "log" task for cy.task()
-      on("task", {
-        log(message) {
-          console.log(message);
-          return null; // must return something
-        }
-      });
+      // Register Mochawesome plugin
+      require("cypress-mochawesome-reporter/plugin")(on);
 
-      return config;
-    },
-       
-    },
-  
-
-  env:{
-
-    URL:'https://flacronbuild.com/'
-
+    }
   },
+
+  env: {
+    URL: "https://flacronbuild.com/"
+  }
 });
