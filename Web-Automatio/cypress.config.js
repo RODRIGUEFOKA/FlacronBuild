@@ -19,7 +19,7 @@ module.exports = defineConfig({
   projectId: "2hxc8g",
 
   e2e: {
-    chromeWebSecurity: false,
+  //  chromeWebSecurity: false,
     experimentalStudio: true,
 
     setupNodeEvents(on, config) {
