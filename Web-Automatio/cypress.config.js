@@ -1,5 +1,6 @@
 const { defineConfig } = require("cypress");
 
+const { defineConfig } = require("cypress");
 const terminalReport = require('cypress-terminal-report/src/installLogs');
 
 
@@ -13,7 +14,7 @@ module.exports = defineConfig({
     html: true,
     json: true, // Generate JSON report
     reportFilename: '[name]',  // Use ONLY [timestamp]
-    reportPageTitle: 'SignUp Test Report',
+    reportPageTitle: 'Test Report',
     reportDir: 'cypress/custom-reports',
     embeddedScreenshots: true,
     inlineAssets: true,
