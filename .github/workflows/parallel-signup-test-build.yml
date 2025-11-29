@@ -29,8 +29,7 @@ jobs:
         with:
           working-directory: Web-Automatio
           command: npm run test:homeowner-signup-test
-         
-          
+                    
       - name: Upload Report
         uses: actions/upload-artifact@v4
         with:
@@ -60,8 +59,7 @@ jobs:
         with:
           working-directory: Web-Automatio
           command: npm run test:contractor-signup-test
-       
-
+          
       - name: Upload Report
         uses: actions/upload-artifact@v4
         with:
@@ -91,8 +89,7 @@ jobs:
         with:
           working-directory: Web-Automatio
           command: npm run test:inspector-signup-test
-         
-          
+                  
       - name: Upload Report
         uses: actions/upload-artifact@v4
         with:
