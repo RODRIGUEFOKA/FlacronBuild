@@ -22,20 +22,14 @@ jobs:
         working-directory: Web-Automatio
         run: npm install
 
-      - name: Run Contractor Signup Test
+      - name: Run Homeowner Signup Test
         uses: cypress-io/github-action@v6
         with:
           working-directory: Web-Automatio
           run: npm run test:homeowner-signup-test
           browser: chrome          
 
-      - name: Upload Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: contractor-signup-report
-          path: Web-Automatio/cypress/reports/html
-
-      # 6. Upload Mochawesome HTML reports
+        # 6. Upload Mochawesome HTML reports
       - name: Upload Mochawesome Reports
         uses: actions/upload-artifact@v4
         if: always()
