@@ -5,7 +5,7 @@ on:
       - web-signup-tests   # your branch
 
 jobs:
-  cypress-run:
+  Homeowner-signup-run:
     runs-on: ubuntu-24.04
 
     steps:
