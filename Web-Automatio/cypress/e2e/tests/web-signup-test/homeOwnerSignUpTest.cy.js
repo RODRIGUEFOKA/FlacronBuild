@@ -245,7 +245,7 @@ describe('Test SignUp Flow for HomeOwner' ,()=>{
 
     // email field with invalud email
 
- it.only('Validate Email field', ()=>{
+ it('Validate Email field', ()=>{
 
        cy.log("======= Testing Login ======")
        cy.log("======= Open Web application ======")
