@@ -1,4 +1,4 @@
-name: Homeowner Signup on ff tests
+name: Homeowner Signup tests
 
 on:
   push:
