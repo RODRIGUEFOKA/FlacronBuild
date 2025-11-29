@@ -3,11 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test:homeowner-signup-test": "npx cypress run --spec cypress/e2e/tests/web-signup-test/homeOwnerSignUpTest.cy.js",
-    "test:contractor-signup-test": "npx cypress run --spec cypress/e2e/tests/web-signup-test/contractorSignUpTest.cy.js",
-    "test:inspector-signup-test": "npx cypress run --spec cypress/e2e/tests/web-signup-test/inspectorSignUpTest.cy.js",
-    "test:insuranceAdjuster-signup-test": "npx cypress run --spec cypress/e2e/tests/web-signup-test/insuranceAdjusterSignUpTest.cy.js",
-    "test": "npx cypress run --record --key a4b817fc-229c-455e-8b61-d3acbab04afa"
+  "test:homeowner-signup-test:chrome": "cypress run --browser chrome --headed --spec cypress/e2e/homeowner_signup.cy.js",
+  "test:homeowner-signup-test:firefox": "cypress run --browser firefox --headed --spec cypress/e2e/homeowner_signup.cy.js",
+  "test:homeowner-signup-test:edge": "cypress run --browser edge --headed --spec cypress/e2e/homeowner_signup.cy.js"
+  "test": "npx cypress run --record --key a4b817fc-229c-455e-8b61-d3acbab04afa"
   },
   "repository": {
     "type": "git",
