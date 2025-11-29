@@ -35,7 +35,7 @@ jobs:
         with:
           working-directory: Web-Automatio
           run: npm run test:homeowner-signup-test
-          browser: firefox
+          browser: chrom
         env:
           CYPRESS_CACHE_FOLDER: ~/.cache/Cypress
 
