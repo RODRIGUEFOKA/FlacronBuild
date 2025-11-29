@@ -29,8 +29,8 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           working-directory: Web-Automatio
-          run: npm run test:homeowner-signup-test
-          browser: chrome
+          command: npm run test:homeowner-signup-test
+        
           
       - name: Upload Report
         uses: actions/upload-artifact@v4
