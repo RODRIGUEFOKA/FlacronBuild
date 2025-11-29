@@ -17,7 +17,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
 
       # 3. Go inside your QA folder (important!)
       - name: Change to Web-Automatio folder
@@ -33,7 +33,7 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           working-directory: Web-Automatio
-          command: npm run test:homeowner-signup-test
+          run: npm run test:homeowner-signup-test
           browser: firefox
         env:
           CYPRESS_CACHE_FOLDER: ~/.cache/Cypress
