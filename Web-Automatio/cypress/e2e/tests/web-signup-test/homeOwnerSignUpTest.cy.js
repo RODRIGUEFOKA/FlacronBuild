@@ -105,11 +105,15 @@ describe('Test SignUp Flow for HomeOwner' ,()=>{
 
        //validattion on Review page
        reviewPageObj.validatePageTitle()
+         cy.wait(1000)
       // reviewPageObj.validateBackButton()
+         cy.wait(1000)
        reviewPageObj.validateDataBox()
+         cy.wait(1000)
        signUpData.saveEnteredName
+         cy.wait(1000)
         reviewPageObj.verifyPlanDetails();  // Dynamically verify plan, billing, price
-
+ cy.wait(1000)
       // reviewPageObj.validateData()   
 
       //validate user input data should save in database and should displayed correct as user entred at the time of registration
@@ -127,9 +131,11 @@ describe('Test SignUp Flow for HomeOwner' ,()=>{
 
      // Profile validation and logout
    profilePageObj.validateProfileIcon() 
+         cy.wait(1000)
            cy.log("======= Testing Logout ======")
             cy.wait(1000)
     profilePageObj.clickLogout()
+         cy.wait(1000)
     homeObj.varifyHomePage() //varifies user hase logout successfully
 
     })
@@ -234,9 +240,9 @@ describe('Test SignUp Flow for HomeOwner' ,()=>{
          reviewPageObj.validateDuplicateEmail()
       
 
-   cy.wait(400)
+   cy.wait(1000)
    cy.scrollTo('top');
-   cy.wait(400)
+   cy.wait(1000)
 
    
 
@@ -270,9 +276,8 @@ describe('Test SignUp Flow for HomeOwner' ,()=>{
     signupObj.validateEmailField("test")
    cy.wait(1000)
 
-      // signupObj.enterPassword(signUpData.password)
-   cy.wait(1000)
-      signupObj.enterPassword(faker.internet.password({ length: 6 }))
+      //signupObj.enterPassword(signUpData.password)
+       signupObj.enterPassword(faker.internet.password({ length: 6 }))
    cy.wait(1000)
        signupObj.clickButton()
 
