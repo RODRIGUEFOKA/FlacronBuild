@@ -20,7 +20,7 @@ module.exports = defineConfig({
   projectId: "2hxc8g",
 
   e2e: {
-    chromeWebSecurity: false,
+    //chromeWebSecurity: false,
     experimentalStudio: true,
     defaultCommandTimeout: 15000, // 15 seconds for commands like cy.get()
   pageLoadTimeout: 60000,       // 60 seconds for page loads
