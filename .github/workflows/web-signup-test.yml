@@ -6,7 +6,7 @@ on:
       - web-signup-tests   # your branch
 
 jobs:
-  cypress-run:
+  HomwOwner-run:
     runs-on: ubuntu-24.04
 
     steps:
@@ -34,7 +34,7 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           working-directory: Web-Automatio
-          spec: cypress/e2e/homeowner.cy.js
+          spec: cypress/e2e/tests/web-signup-test/homeOwnerSignUpTest.cy.js
           browser: firefox
         env:
           CYPRESS_CACHE_FOLDER: ~/.cache/Cypress
