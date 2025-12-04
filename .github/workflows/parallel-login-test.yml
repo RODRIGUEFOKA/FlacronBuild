@@ -1,0 +1,130 @@
+name: Parallel Signup Test Build
+
+on:
+  push:
+    branches:
+      -  web-login-test
+
+jobs:
+
+  homeowner-run:
+    name: Homeowner Login Test on firefox
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+         node-version: 22
+
+      - name: Install Dependencies
+        working-directory: web-automation
+        run: npm install
+
+      - name: Run Homeowner Login Test
+        uses: cypress-io/github-action@v6
+        with:
+          working-directory: web-automation
+          command: npm run test:homeowner-login-test
+                    
+      - name: Upload Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: homeowner-Login-report
+          path: web-automation/cypress/reports/html
+
+
+  contractor-run:
+    name: Contractor Login Test on Chrome
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Dependencies
+        working-directory: web-automation
+
+        run: npm install
+
+      - name: Run Contractor login Test
+        uses: cypress-io/github-action@v6
+        with:
+          working-directory: web-automation
+          command: npm run test:contractor-login-test
+          
+      - name: Upload Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: contractor-login-report
+          path: web-automation/cypress/reports/html
+
+
+  inspector-run:
+    name: Inspector Login Test on Edge
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Dependencies
+        working-directory: web-automation
+        run: npm install
+
+      - name: Run Inspector login Test
+        uses: cypress-io/github-action@v6
+        with:
+          working-directory: web-automation
+          command: npm run test:inspector-login-test
+                  
+      - name: Upload Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: inspector-login-report
+          path: web-automation/cypress/reports/html
+
+
+  insurance-adjuster-run:
+    name: Insurance Adjuster login Test on Chrome
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Dependencies
+        working-directory: web-automation
+        run: npm install
+
+      - name: Run Insurance Adjuster Signup Test
+        uses: cypress-io/github-action@v6
+        with:
+          working-directory: web-automation
+          command: npm run test:insuranceAdjuster-login-test
+          
+
+      - name: Upload Report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: insurance-adjuster-signup-report
+          path: web-automation/cypress/reports/html
