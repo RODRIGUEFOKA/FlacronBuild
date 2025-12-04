@@ -1,4 +1,4 @@
-name: Contractor Login Test Build
+name: Contractor Login Test on Chrome browser Build
 
 on:
   push:
@@ -25,7 +25,7 @@ jobs:
         working-directory: web-automation
         run: npm install
 
-      - name: Run Homeowner login Test
+      - name: Run Contractor login Test
         uses: cypress-io/github-action@v6
         with:
           working-directory: web-automation
