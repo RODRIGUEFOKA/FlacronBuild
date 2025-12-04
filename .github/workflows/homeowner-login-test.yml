@@ -22,7 +22,7 @@ jobs:
 
 
       - name: Install Dependencies
-        working-directory: Web-Automatio
+        working-directory: web-automation
         run: npm install
 
       - name: Run Homeowner login Test
