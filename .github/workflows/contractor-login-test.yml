@@ -7,7 +7,7 @@ on:
 
 jobs:
 
-  homeowner-run:
+  Contractor-run:
     name: Contractor login Test 
     runs-on: ubuntu-22.04 
 
