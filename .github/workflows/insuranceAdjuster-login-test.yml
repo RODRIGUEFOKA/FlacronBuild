@@ -7,7 +7,7 @@ on:
 
 jobs:
 
-  homeowner-run:
+  insuranceAdjuster-run:
     name: insuranceAdjuster login Test 
     runs-on: ubuntu-22.04 
 
