@@ -1,4 +1,4 @@
-name: Login Multi-Browser Tests - For all roles
+name: Login Multi-Browser Tests - For all roles (with Cypress Cloud)
 
 on:
   push:
@@ -8,41 +8,68 @@ on:
 jobs:
   cross-browser:
     runs-on: ubuntu-24.04
+
     strategy:
       fail-fast: false
       matrix:
-        browser: [chrome, edge, firefox]  # Auto run on all 3
+        browser: [chrome, edge, firefox]  # Run on all 3 browsers
+        containers: [1]  # 1 container per browser
 
     steps:
+      # -------------------------------
+      # CHECKOUT CODE
+      # -------------------------------
       - name: Checkout Repository
         uses: actions/checkout@v4
-        with: 
-          record: true
-        env:
-         CYPRESS_RECORD_KEY: a4b817fc-229c-455e-8b61-d3acbab04afa
 
+      # -------------------------------
+      # SETUP NODE
+      # -------------------------------
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
 
+      # -------------------------------
+      # INSTALL CYPRESS DEPENDENCIES
+      # -------------------------------
       - name: Install Dependencies
         working-directory: web-automation
         run: npm install
 
-      - name: Run Cypress on each browser
+      # -------------------------------
+      # RUN CYPRESS WITH CLOUD RECORDING
+      # -------------------------------
+      - name: Run Cypress on ${{ matrix.browser }} and record to Cloud
         uses: cypress-io/github-action@v6
-        if: always()      
+        if: always()
         with:
           working-directory: web-automation
           install: false
           browser: ${{ matrix.browser }}
           headed: true
           spec: "**/*.cy.js"
-
+          record: true           # <-- ENABLE CYPRESS CLOUD
+          parallel: false        # (We’re already splitting by browser)
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          TOKEN: ${{ secrets.TOKEN }}
+      # -------------------------------
+      # UPLOAD MOCHAWESOME REPORTS
+      # -------------------------------
       - name: Upload Mochawesome Reports
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: multi-browser-${{ matrix.browser }}-report
+          name: mochawesome-${{ matrix.browser }}-report
           path: web-automation/cypress/reports/html
+
+      # -------------------------------
+      # UPLOAD VIDEOS
+      # -------------------------------
+      - name: Upload Cypress Videos
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: videos-${{ matrix.browser }}
+          path: web-automation/cypress/videos
