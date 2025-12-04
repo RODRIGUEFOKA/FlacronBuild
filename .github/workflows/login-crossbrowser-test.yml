@@ -51,8 +51,8 @@ jobs:
           record: true           
           parallel: false        
         env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CYPRESS_RECORD_KEY: f84cd963-d926-4c10-af50-4863894cad86
+          
 
       # -------------------------------
       # UPLOAD MOCHAWESOME REPORTS
