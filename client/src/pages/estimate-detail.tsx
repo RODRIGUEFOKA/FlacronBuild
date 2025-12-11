@@ -6,6 +6,7 @@ import Header from "@/components/header";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { generatePDFReport } from "@/lib/pdf-generator";
+import { ArrowLeft } from "lucide-react";
 
 function capitalizeWords(str: string) {
   return str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.slice(1).toLowerCase());
@@ -122,8 +123,9 @@ export default function EstimateDetailPage() {
     <div className="min-h-screen bg-neutral-50 flex flex-col">
       <Header />
       <main className="flex-1 flex flex-col items-center py-8 px-2">
-        <Button variant="outline" className="mb-6" onClick={() => navigate("/my-estimates")}>
-          &larr; Back
+        <Button variant="outline" className="mb-6 self-start ml-4 md:ml-0" onClick={() => navigate("/")}>
+          <ArrowLeft className="mr-2 h-4 w-4" />
+          Go Back to Homepage
         </Button>
         <Card className="max-w-2xl w-full p-8 rounded-2xl shadow-lg bg-white">
           <h2 className="text-3xl font-extrabold mb-6 text-center text-blue-700 tracking-tight">{project?.name || "Estimate Detail"}</h2>

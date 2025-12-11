@@ -5,6 +5,7 @@ import { doc, getDoc, updateDoc } from "firebase/firestore";
 import Header from "@/components/header";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
 
 function capitalizeWords(str: string) {
   return str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.slice(1).toLowerCase());
@@ -96,8 +97,9 @@ export default function EstimateEditPage() {
     <div className="min-h-screen bg-neutral-50 flex flex-col">
       <Header />
       <main className="flex-1 flex flex-col items-center py-8 px-2">
-        <Button variant="outline" className="mb-6" onClick={() => navigate(`/my-estimates`)}>
-          &larr; Cancel
+        <Button variant="outline" className="mb-6 self-start ml-4 md:ml-0" onClick={() => navigate("/")}>
+          <ArrowLeft className="mr-2 h-4 w-4" />
+          Go Back to Homepage
         </Button>
         <div className="mb-6 text-center text-neutral-600 text-base">
           <span className="font-semibold">Note:</span> For estimate calculation, use the <a href="/" className="text-blue-600 underline hover:text-blue-800">calculator</a>

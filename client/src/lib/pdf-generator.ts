@@ -691,6 +691,458 @@ function getLocalizedText(key: string, language: string = 'english'): string {
       'portuguese': 'Análise do Contratante e Indicadores de Reparo:',
       'chinese': '承包商分析和维修指标:',
       'japanese': '請負業者分析と修理指標:'
+    },
+    
+    // Inspector Report Specific
+    'professional_inspector_report': {
+      'english': 'PROFESSIONAL INSPECTOR REPORT',
+      'spanish': 'INFORME DEL INSPECTOR PROFESIONAL',
+      'french': 'RAPPORT D\'INSPECTEUR PROFESSIONNEL',
+      'german': 'PROFESSIONELLER INSPEKTIONSBERICHT',
+      'italian': 'RAPPORTO ISPETTORE PROFESSIONALE',
+      'portuguese': 'RELATÓRIO DO INSPETOR PROFISSIONAL',
+      'chinese': '专业检查员报告',
+      'japanese': 'プロフェッショナル検査レポート'
+    },
+    'inspector_certification': {
+      'english': 'INSPECTOR CERTIFICATION',
+      'spanish': 'CERTIFICACIÓN DEL INSPECTOR',
+      'french': 'CERTIFICATION DE L\'INSPECTEUR',
+      'german': 'INSPEKTOR-ZERTIFIZIERUNG',
+      'italian': 'CERTIFICAZIONE ISPETTORE',
+      'portuguese': 'CERTIFICAÇÃO DO INSPETOR',
+      'chinese': '检查员认证',
+      'japanese': '検査員認定'
+    },
+    'inspector': {
+      'english': 'Inspector:',
+      'spanish': 'Inspector:',
+      'french': 'Inspecteur:',
+      'german': 'Inspektor:',
+      'italian': 'Ispettore:',
+      'portuguese': 'Inspetor:',
+      'chinese': '检查员:',
+      'japanese': '検査員:'
+    },
+    'license': {
+      'english': 'License:',
+      'spanish': 'Licencia:',
+      'french': 'Licence:',
+      'german': 'Lizenz:',
+      'italian': 'Licenza:',
+      'portuguese': 'Licença:',
+      'chinese': '许可证:',
+      'japanese': 'ライセンス:'
+    },
+    'contact': {
+      'english': 'Contact:',
+      'spanish': 'Contacto:',
+      'french': 'Contact:',
+      'german': 'Kontakt:',
+      'italian': 'Contatto:',
+      'portuguese': 'Contato:',
+      'chinese': '联系方式:',
+      'japanese': '連絡先:'
+    },
+    'inspection_details': {
+      'english': 'INSPECTION DETAILS',
+      'spanish': 'DETALLES DE INSPECCIÓN',
+      'french': 'DÉTAILS D\'INSPECTION',
+      'german': 'INSPEKTIONSDETAILS',
+      'italian': 'DETTAGLI ISPEZIONE',
+      'portuguese': 'DETALHES DA INSPEÇÃO',
+      'chinese': '检查详情',
+      'japanese': '検査詳細'
+    },
+    'date': {
+      'english': 'Date:',
+      'spanish': 'Fecha:',
+      'french': 'Date:',
+      'german': 'Datum:',
+      'italian': 'Data:',
+      'portuguese': 'Data:',
+      'chinese': '日期:',
+      'japanese': '日付:'
+    },
+    'weather_conditions': {
+      'english': 'Weather Conditions:',
+      'spanish': 'Condiciones Climáticas:',
+      'french': 'Conditions Météorologiques:',
+      'german': 'Wetterbedingungen:',
+      'italian': 'Condizioni Meteorologiche:',
+      'portuguese': 'Condições Climáticas:',
+      'chinese': '天气条件:',
+      'japanese': '気象条件:'
+    },
+    'property_location': {
+      'english': 'PROPERTY LOCATION',
+      'spanish': 'UBICACIÓN DE LA PROPIEDAD',
+      'french': 'EMPLACEMENT DE LA PROPRIÉTÉ',
+      'german': 'STANDORT DER IMMOBILLE',
+      'italian': 'POSIZIONE DELLA PROPRIETÀ',
+      'portuguese': 'LOCALIZAÇÃO DA PROPRIEDADE',
+      'chinese': '物业位置',
+      'japanese': '物件の場所'
+    },
+    'address': {
+      'english': 'Address:',
+      'spanish': 'Dirección:',
+      'french': 'Adresse:',
+      'german': 'Adresse:',
+      'italian': 'Indirizzo:',
+      'portuguese': 'Endereço:',
+      'chinese': '地址:',
+      'japanese': '住所:'
+    },
+    'structure_analysis': {
+      'english': 'STRUCTURE ANALYSIS',
+      'spanish': 'ANÁLISIS DE ESTRUCTURA',
+      'french': 'ANALYSE DE STRUCTURE',
+      'german': 'STRUKTURANALYSE',
+      'italian': 'ANALISI STRUTTURALE',
+      'portuguese': 'ANÁLISE ESTRUTURAL',
+      'chinese': '结构分析',
+      'japanese': '構造分析'
+    },
+    'type': {
+      'english': 'Type:',
+      'spanish': 'Tipo:',
+      'french': 'Type:',
+      'german': 'Typ:',
+      'italian': 'Tipo:',
+      'portuguese': 'Tipo:',
+      'chinese': '类型:',
+      'japanese': 'タイプ:'
+    },
+    'age': {
+      'english': 'Age:',
+      'spanish': 'Edad:',
+      'french': 'Âge:',
+      'german': 'Alter:',
+      'italian': 'Età:',
+      'portuguese': 'Idade:',
+      'chinese': '年龄:',
+      'japanese': '年齢:'
+    },
+    'years': {
+      'english': 'years',
+      'spanish': 'años',
+      'french': 'ans',
+      'german': 'Jahre',
+      'italian': 'anni',
+      'portuguese': 'anos',
+      'chinese': '年',
+      'japanese': '年'
+    },
+    'materials': {
+      'english': 'Materials:',
+      'spanish': 'Materiales:',
+      'french': 'Matériaux:',
+      'german': 'Materialien:',
+      'italian': 'Materiali:',
+      'portuguese': 'Materiais:',
+      'chinese': '材料:',
+      'japanese': '材料:'
+    },
+    'slope_by_slope_conditions': {
+      'english': 'SLOPE-BY-SLOPE CONDITIONS',
+      'spanish': 'CONDICIONES POR PENDIENTE',
+      'french': 'CONDITIONS PAR PENTE',
+      'german': 'BEDINGUNGEN NACH GEFÄLLE',
+      'italian': 'CONDIZIONI PER PENDENZA',
+      'portuguese': 'CONDIÇÕES POR INCLINAÇÃO',
+      'chinese': '逐坡条件',
+      'japanese': '勾配別条件'
+    },
+    'slope': {
+      'english': 'Slope',
+      'spanish': 'Pendiente',
+      'french': 'Pente',
+      'german': 'Gefälle',
+      'italian': 'Pendenza',
+      'portuguese': 'Inclinação',
+      'chinese': '坡度',
+      'japanese': '勾配'
+    },
+    'damage_type': {
+      'english': 'Damage Type:',
+      'spanish': 'Tipo de Daño:',
+      'french': 'Type de Dommage:',
+      'german': 'Schadenstyp:',
+      'italian': 'Tipo di Danno:',
+      'portuguese': 'Tipo de Dano:',
+      'chinese': '损坏类型:',
+      'japanese': '損傷タイプ:'
+    },
+    'severity': {
+      'english': 'Severity:',
+      'spanish': 'Severidad:',
+      'french': 'Gravité:',
+      'german': 'Schweregrad:',
+      'italian': 'Gravità:',
+      'portuguese': 'Severidade:',
+      'chinese': '严重程度:',
+      'japanese': '深刻度:'
+    },
+    'description': {
+      'english': 'Description:',
+      'spanish': 'Descripción:',
+      'french': 'Description:',
+      'german': 'Beschreibung:',
+      'italian': 'Descrizione:',
+      'portuguese': 'Descrição:',
+      'chinese': '描述:',
+      'japanese': '説明:'
+    },
+    'no_slope_damage': {
+      'english': 'No slope damage reported',
+      'spanish': 'No se reportó daño en pendientes',
+      'french': 'Aucun dommage de pente signalé',
+      'german': 'Keine Gefälleschäden gemeldet',
+      'italian': 'Nessun danno alla pendenza segnalato',
+      'portuguese': 'Nenhum dano de inclinação relatado',
+      'chinese': '未报告坡度损坏',
+      'japanese': '勾配の損傷は報告されていません'
+    },
+    'roofing_components_assessment': {
+      'english': 'ROOFING COMPONENTS ASSESSMENT',
+      'spanish': 'EVALUACIÓN DE COMPONENTES DEL TECHO',
+      'french': 'ÉVALUATION DES COMPOSANTS DE TOITURE',
+      'german': 'BEWERTUNG DER DACHKOMPONENTEN',
+      'italian': 'VALUTAZIONE COMPONENTI COPERTURA',
+      'portuguese': 'AVALIAÇÃO DOS COMPONENTES DO TELHADO',
+      'chinese': '屋顶组件评估',
+      'japanese': '屋根コンポーネント評価'
+    },
+    'felt': {
+      'english': 'Felt:',
+      'spanish': 'Fieltro:',
+      'french': 'Feutre:',
+      'german': 'Filz:',
+      'italian': 'Feltro:',
+      'portuguese': 'Feltro:',
+      'chinese': '油毡:',
+      'japanese': 'フェルト:'
+    },
+    'ice_water_shield': {
+      'english': 'Ice/Water Shield:',
+      'spanish': 'Escudo de Hielo/Agua:',
+      'french': 'Bouclier Glace/Eau:',
+      'german': 'Eis/Wasserschutz:',
+      'italian': 'Barriera Ghiaccio/Acqua:',
+      'portuguese': 'Escudo de Gelo/Água:',
+      'chinese': '冰/水防护层:',
+      'japanese': 'アイス/ウォーターシールド:'
+    },
+    'present': {
+      'english': 'Present',
+      'spanish': 'Presente',
+      'french': 'Présent',
+      'german': 'Vorhanden',
+      'italian': 'Presente',
+      'portuguese': 'Presente',
+      'chinese': '存在',
+      'japanese': '存在'
+    },
+    'not_present': {
+      'english': 'Not present',
+      'spanish': 'No presente',
+      'french': 'Non présent',
+      'german': 'Nicht vorhanden',
+      'italian': 'Non presente',
+      'portuguese': 'Não presente',
+      'chinese': '不存在',
+      'japanese': '存在しない'
+    },
+    'drip_edge': {
+      'english': 'Drip Edge:',
+      'spanish': 'Borde de Goteo:',
+      'french': 'Bord de Gouttière:',
+      'german': 'Tropfkante:',
+      'italian': 'Bordo di Gocciolamento:',
+      'portuguese': 'Borda de Gotejamento:',
+      'chinese': '滴水边缘:',
+      'japanese': 'ドリップエッジ:'
+    },
+    'gutter_apron': {
+      'english': 'Gutter Apron:',
+      'spanish': 'Delantal de Canalón:',
+      'french': 'Tablier de Gouttière:',
+      'german': 'Rinnenapron:',
+      'italian': 'Grembiule Grondaia:',
+      'portuguese': 'Avental de Calha:',
+      'chinese': '天沟护板:',
+      'japanese': 'ガターエプロン:'
+    },
+    'pipe_boots': {
+      'english': 'Pipe Boots:',
+      'spanish': 'Botas de Tubería:',
+      'french': 'Manchons de Tuyau:',
+      'german': 'Rohrstiefel:',
+      'italian': 'Guarnizioni Tubo:',
+      'portuguese': 'Botas de Tubo:',
+      'chinese': '管道靴:',
+      'japanese': 'パイプブーツ:'
+    },
+    'fascia_condition': {
+      'english': 'Fascia Condition:',
+      'spanish': 'Condición del Fascia:',
+      'french': 'État du Fascia:',
+      'german': 'Faszienszustand:',
+      'italian': 'Condizione Fascia:',
+      'portuguese': 'Condição do Fascia:',
+      'chinese': '封檐板状况:',
+      'japanese': 'ファシアの状態:'
+    },
+    'gutter_condition': {
+      'english': 'Gutter Condition:',
+      'spanish': 'Condición del Canalón:',
+      'french': 'État de la Gouttière:',
+      'german': 'Rinnenzustand:',
+      'italian': 'Condizione Grondaia:',
+      'portuguese': 'Condição da Calha:',
+      'chinese': '天沟状况:',
+      'japanese': 'ガターの状態:'
+    },
+    'inspector_notes_equipment': {
+      'english': 'INSPECTOR NOTES & EQUIPMENT',
+      'spanish': 'NOTAS Y EQUIPOS DEL INSPECTOR',
+      'french': 'NOTES ET ÉQUIPEMENT DE L\'INSPECTEUR',
+      'german': 'INSPEKTOR-NOTIZEN & AUSRÜSTUNG',
+      'italian': 'NOTE E ATTREZZATURE ISPETTORE',
+      'portuguese': 'NOTAS E EQUIPAMENTOS DO INSPETOR',
+      'chinese': '检查员备注和设备',
+      'japanese': '検査員のメモと機器'
+    },
+    'equipment_used': {
+      'english': 'Equipment Used:',
+      'spanish': 'Equipos Utilizados:',
+      'french': 'Équipement Utilisé:',
+      'german': 'Verwendete Ausrüstung:',
+      'italian': 'Attrezzature Utilizzate:',
+      'portuguese': 'Equipamentos Utilizados:',
+      'chinese': '使用的设备:',
+      'japanese': '使用機器:'
+    },
+    'owner_notes': {
+      'english': 'Owner Notes:',
+      'spanish': 'Notas del Propietario:',
+      'french': 'Notes du Propriétaire:',
+      'german': 'Notizen des Eigentümers:',
+      'italian': 'Note del Proprietario:',
+      'portuguese': 'Notas do Proprietário:',
+      'chinese': '业主备注:',
+      'japanese': '所有者のメモ:'
+    },
+    'photographic_evidence': {
+      'english': 'PHOTOGRAPHIC EVIDENCE',
+      'spanish': 'EVIDENCIA FOTOGRÁFICA',
+      'french': 'PREUVE PHOTOGRAPHIQUE',
+      'german': 'FOTOBEWEIS',
+      'italian': 'PROVA FOTOGRAFICA',
+      'portuguese': 'EVIDÊNCIA FOTOGRÁFICA',
+      'chinese': '照片证据',
+      'japanese': '写真証拠'
+    },
+    'not_specified': {
+      'english': 'Not specified',
+      'spanish': 'No especificado',
+      'french': 'Non spécifié',
+      'german': 'Nicht angegeben',
+      'italian': 'Non specificato',
+      'portuguese': 'Não especificado',
+      'chinese': '未指定',
+      'japanese': '指定なし'
+    },
+    'none_provided': {
+      'english': 'None provided',
+      'spanish': 'Ninguno proporcionado',
+      'french': 'Aucun fourni',
+      'german': 'Keine bereitgestellt',
+      'italian': 'Nessuno fornito',
+      'portuguese': 'Nenhum fornecido',
+      'chinese': '未提供',
+      'japanese': '提供なし'
+    },
+    'location_not_provided': {
+      'english': 'Location not provided',
+      'spanish': 'Ubicación no proporcionada',
+      'french': 'Emplacement non fourni',
+      'german': 'Standort nicht angegeben',
+      'italian': 'Posizione non fornita',
+      'portuguese': 'Localização não fornecida',
+      'chinese': '未提供位置',
+      'japanese': '場所が提供されていません'
+    },
+    'inspector_name_not_provided': {
+      'english': 'Inspector name not provided',
+      'spanish': 'Nombre del inspector no proporcionado',
+      'french': 'Nom de l\'inspecteur non fourni',
+      'german': 'Inspektorname nicht angegeben',
+      'italian': 'Nome ispettore non fornito',
+      'portuguese': 'Nome do inspetor não fornecido',
+      'chinese': '未提供检查员姓名',
+      'japanese': '検査員名が提供されていません'
+    },
+    'license_not_provided': {
+      'english': 'License not provided',
+      'spanish': 'Licencia no proporcionada',
+      'french': 'Licence non fournie',
+      'german': 'Lizenz nicht angegeben',
+      'italian': 'Licenza non fornita',
+      'portuguese': 'Licença não fornecida',
+      'chinese': '未提供许可证',
+      'japanese': 'ライセンスが提供されていません'
+    },
+    'contact_info_not_provided': {
+      'english': 'Contact info not provided',
+      'spanish': 'Información de contacto no proporcionada',
+      'french': 'Informations de contact non fournies',
+      'german': 'Kontaktinformationen nicht angegeben',
+      'italian': 'Informazioni di contatto non fornite',
+      'portuguese': 'Informações de contato não fornecidas',
+      'chinese': '未提供联系信息',
+      'japanese': '連絡先情報が提供されていません'
+    },
+    'date_not_provided': {
+      'english': 'Date not provided',
+      'spanish': 'Fecha no proporcionada',
+      'french': 'Date non fournie',
+      'german': 'Datum nicht angegeben',
+      'italian': 'Data non fornita',
+      'portuguese': 'Data não fornecida',
+      'chinese': '未提供日期',
+      'japanese': '日付が提供されていません'
+    },
+    'weather_not_specified': {
+      'english': 'Weather not specified',
+      'spanish': 'Clima no especificado',
+      'french': 'Météo non spécifiée',
+      'german': 'Wetter nicht angegeben',
+      'italian': 'Meteo non specificata',
+      'portuguese': 'Clima não especificado',
+      'chinese': '未指定天气',
+      'japanese': '天気が指定されていません'
+    },
+    'no_description': {
+      'english': 'No description',
+      'spanish': 'Sin descripción',
+      'french': 'Aucune description',
+      'german': 'Keine Beschreibung',
+      'italian': 'Nessuna descrizione',
+      'portuguese': 'Sem descrição',
+      'chinese': '无描述',
+      'japanese': '説明なし'
+    },
+    'none_specified': {
+      'english': 'None specified',
+      'spanish': 'Ninguno especificado',
+      'french': 'Aucun spécifié',
+      'german': 'Keine angegeben',
+      'italian': 'Nessuno specificato',
+      'portuguese': 'Nenhum especificado',
+      'chinese': '未指定',
+      'japanese': '指定なし'
     }
   };
   
@@ -704,14 +1156,13 @@ function addInsuranceReport(doc: jsPDF, project: any, estimate: any) {
   
   // Get user preferences
   const preferredLanguage = project.preferredLanguage || 'english';
-  const preferredCurrency = project.preferredCurrency || 'USD';
   
   // Debug logging
   console.log('=== Insurance Report Data ===');
   console.log('Project:', project);
   console.log('Estimate:', estimate);
   console.log('Report:', estimate?.report);
-  console.log('Language:', preferredLanguage, 'Currency:', preferredCurrency);
+  console.log('Language:', preferredLanguage);
   
   // Extract report data - handle both direct form data and Gemini response
   const report = estimate?.report || {};
@@ -956,7 +1407,7 @@ function addInsuranceReport(doc: jsPDF, project: any, estimate: any) {
 
   // Legal/Certification Notes
   yPos += 10;
-  doc.setFillColor(33, 53, 153);
+  doc.setFillColor(255, 102, 0);
   doc.setTextColor(255, 255, 255);
   doc.setFontSize(14);
   doc.rect(margin, yPos, pageWidth - 2*margin, 8, 'F');
@@ -1003,14 +1454,15 @@ function addInsuranceImagePages(doc: jsPDF, uploadedFiles: any[], report?: any) 
   let y = 20;
     
     // Page title
+    doc.setFont('helvetica', 'bold');
     doc.setFontSize(16);
-  doc.setTextColor(33, 33, 33);
+    doc.setTextColor(33, 33, 33);
     doc.text(`CLAIM EVIDENCE ${index + 1}`, 20, y);
-  doc.setTextColor(0, 0, 0);
-  y += 10;
-  doc.setDrawColor(255, 102, 0);
-  doc.setLineWidth(1);
-  doc.line(20, y, 190, y);
+    doc.setTextColor(0, 0, 0);
+    y += 10;
+    doc.setDrawColor(255, 102, 0);
+    doc.setLineWidth(1);
+    doc.line(20, y, 190, y);
     y += 15;
     
     // Image annotation with insurance-specific focus
@@ -2264,7 +2716,7 @@ export async function generatePDFReport(project: any, estimate: any, options?: {
     
     // IMAGE PAGES: Add images from localStorage with annotations
     if (uploadedFiles.length > 0) {
-      addInspectorImagePages(doc, uploadedFiles, estimate.report);
+      addInspectorImagePages(doc, uploadedFiles, estimate.report, project.preferredLanguage || 'english');
     }
   } else if (project.userRole === 'insurance-adjuster') {
     doc.addPage();
@@ -2304,12 +2756,17 @@ export async function generatePDFReport(project: any, estimate: any, options?: {
     ? `${safeUser}_${safeProject}_${timestamp}_FlacronBuild.pdf` 
     : `${safeProject}_${timestamp}_FlacronBuild.pdf`;
 
+  // Generate PDF output ONCE and reuse it (this is expensive, so we cache it)
+  const pdfBlob = doc.output('blob');
+  const pdfBase64 = doc.output('datauristring');
+  const pdfFileSize = pdfBlob.size;
+
   // Prepare structured data for Firebase storage
   const structuredData = {
     pdf: {
       fileName: fileName,
-      fileSize: doc.output('blob').size,
-      pdfBase64: doc.output('datauristring'),
+      fileSize: pdfFileSize,
+      pdfBase64: pdfBase64,
       generatedAt: new Date().toISOString(),
       projectType: project.userRole || 'unknown',
       uploadedBy: options?.username || 'anonymous'
@@ -2372,19 +2829,19 @@ export async function generatePDFReport(project: any, estimate: any, options?: {
     console.error('Data that failed to save:', JSON.stringify(structuredData, null, 2));
   }
 
-  // Save or open the PDF
+  // Save or open the PDF (reuse the already-generated blob)
   if (options?.openInNewTab) {
-    window.open(URL.createObjectURL(doc.output('blob')));
+    window.open(URL.createObjectURL(pdfBlob));
     } else {
     doc.save(fileName);
   }
   
-  // Return metadata needed for response
+  // Return metadata needed for response (reuse the already-generated values)
   return {
     pdfDoc: doc,
     fileName: fileName,
-    fileSize: doc.output('blob').size,
-    pdfBase64: doc.output('datauristring'),
+    fileSize: pdfFileSize,
+    pdfBase64: pdfBase64,
     timestamp: new Date().toISOString(),
     projectType: project.userRole || 'unknown',
     uploadedBy: options?.username || 'anonymous',
@@ -2579,70 +3036,100 @@ function addInspectorReport(doc: jsPDF, project: any, estimate: any) {
     let y = 20;
   
   // Title
-    doc.setFontSize(18);
-    doc.setTextColor(33, 33, 33);
-  doc.text('PROFESSIONAL INSPECTOR REPORT', 20, y);
-    doc.setTextColor(0, 0, 0);
-    y += 10;
-    doc.setDrawColor(255, 102, 0);
-    doc.setLineWidth(1);
-    doc.line(20, y, 190, y);
-    y += 15;
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(20);
+  doc.setTextColor(33, 33, 33);
+  doc.text(getLocalizedText('professional_inspector_report', preferredLanguage), 20, y);
+  doc.setTextColor(0, 0, 0);
+  y += 10;
+  doc.setDrawColor(255, 102, 0);
+  doc.setLineWidth(1);
+  doc.line(20, y, 190, y);
+  y += 15;
     
   // Inspector Name & Contact
-  doc.setFontSize(12);
+  const pageWidth = doc.internal.pageSize.width;
+  const margin = 20;
+  doc.setFillColor(255, 102, 0);
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(14);
   doc.setFont('helvetica', 'bold');
-  doc.text('INSPECTOR CERTIFICATION', 20, y);
+  doc.rect(margin, y, pageWidth - 2*margin, 8, 'F');
+  doc.text(getLocalizedText('inspector_certification', preferredLanguage), margin + 5, y + 6);
+  y += 15;
+  
+  doc.setTextColor(0, 0, 0);
+  doc.setFontSize(10);
   doc.setFont('helvetica', 'normal');
-  y += 8;
-  const inspectorName = project.inspectorInfo?.name || 'Inspector name not provided';
-  const inspectorLicense = project.inspectorInfo?.license || 'License not provided';
-  const inspectorContact = project.inspectorInfo?.contact || 'Contact info not provided';
-  doc.text(`Inspector: ${inspectorName}`, 20, y);
+  const inspectorName = project.inspectorInfo?.name || getLocalizedText('inspector_name_not_provided', preferredLanguage);
+  const inspectorLicense = project.inspectorInfo?.license || getLocalizedText('license_not_provided', preferredLanguage);
+  const inspectorContact = project.inspectorInfo?.contact || getLocalizedText('contact_info_not_provided', preferredLanguage);
+  doc.text(`${getLocalizedText('inspector', preferredLanguage)} ${inspectorName}`, 20, y);
   y += 6;
-  doc.text(`License: ${inspectorLicense}`, 20, y);
+  doc.text(`${getLocalizedText('license', preferredLanguage)} ${inspectorLicense}`, 20, y);
   y += 6;
-  doc.text(`Contact: ${inspectorContact}`, 20, y);
+  doc.text(`${getLocalizedText('contact', preferredLanguage)} ${inspectorContact}`, 20, y);
   y += 12;
   
   // Inspection Date & Time
+  doc.setFillColor(255, 102, 0);
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(14);
   doc.setFont('helvetica', 'bold');
-  doc.text('INSPECTION DETAILS', 20, y);
+  doc.rect(margin, y, pageWidth - 2*margin, 8, 'F');
+  doc.text(getLocalizedText('inspection_details', preferredLanguage), margin + 5, y + 6);
+  y += 15;
+  
+  doc.setTextColor(0, 0, 0);
+  doc.setFontSize(10);
   doc.setFont('helvetica', 'normal');
-    y += 8;
-  const inspectionDate = project.inspectionDate || 'Date not provided';
-  const weatherConditions = project.weatherConditions || 'Weather not specified';
-  doc.text(`Date: ${inspectionDate}`, 20, y);
+  const inspectionDate = project.inspectionDate || getLocalizedText('date_not_provided', preferredLanguage);
+  const weatherConditions = project.weatherConditions || getLocalizedText('weather_not_specified', preferredLanguage);
+  doc.text(`${getLocalizedText('date', preferredLanguage)} ${inspectionDate}`, 20, y);
   y += 6;
-  doc.text(`Weather Conditions: ${weatherConditions}`, 20, y);
+  doc.text(`${getLocalizedText('weather_conditions', preferredLanguage)} ${weatherConditions}`, 20, y);
   y += 12;
   
   // Address & GPS Coordinates
-      doc.setFont('helvetica', 'bold');
-  doc.text('PROPERTY LOCATION', 20, y);
-      doc.setFont('helvetica', 'normal');
-  y += 8;
+  doc.setFillColor(255, 102, 0);
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'bold');
+  doc.rect(margin, y, pageWidth - 2*margin, 8, 'F');
+  doc.text(getLocalizedText('property_location', preferredLanguage), margin + 5, y + 6);
+  y += 15;
+  
+  doc.setTextColor(0, 0, 0);
+  doc.setFontSize(10);
+  doc.setFont('helvetica', 'normal');
   const location = project.location;
   if (location && typeof location === 'object') {
-    doc.text(`Address: ${location.city}, ${location.country} ${location.zipCode}`, 20, y);
+    doc.text(`${getLocalizedText('address', preferredLanguage)} ${location.city}, ${location.country} ${location.zipCode}`, 20, y);
   } else {
-    doc.text(`Address: ${location || 'Location not provided'}`, 20, y);
+    doc.text(`${getLocalizedText('address', preferredLanguage)} ${location || getLocalizedText('location_not_provided', preferredLanguage)}`, 20, y);
   }
   y += 12;
   
   // Structure Overview
-          doc.setFont('helvetica', 'bold');
-  doc.text('STRUCTURE ANALYSIS', 20, y);
+  doc.setFillColor(255, 102, 0);
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'bold');
+  doc.rect(margin, y, pageWidth - 2*margin, 8, 'F');
+  doc.text(getLocalizedText('structure_analysis', preferredLanguage), margin + 5, y + 6);
+  y += 15;
+  
+  doc.setTextColor(0, 0, 0);
+  doc.setFontSize(10);
   doc.setFont('helvetica', 'normal');
-  y += 8;
-  doc.text(`Type: ${project.structureType || 'Not specified'}`, 20, y);
+  doc.text(`${getLocalizedText('type', preferredLanguage)} ${project.structureType || getLocalizedText('not_specified', preferredLanguage)}`, 20, y);
   y += 6;
-  doc.text(`Roof Pitch: ${project.roofPitch || 'Not specified'}`, 20, y);
+  doc.text(`${getLocalizedText('roof_pitch', preferredLanguage)} ${project.roofPitch || getLocalizedText('not_specified', preferredLanguage)}`, 20, y);
   y += 6;
-  doc.text(`Age: ${project.roofAge || 'Not specified'} years`, 20, y);
+  doc.text(`${getLocalizedText('age', preferredLanguage)} ${project.roofAge || getLocalizedText('not_specified', preferredLanguage)} ${getLocalizedText('years', preferredLanguage)}`, 20, y);
   y += 6;
-  const materialLayers = project.materialLayers?.join(', ') || 'Not specified';
-  doc.text(`Materials: ${materialLayers}`, 20, y, { maxWidth: 150 });
+  const materialLayers = project.materialLayers?.join(', ') || getLocalizedText('not_specified', preferredLanguage);
+  doc.text(`${getLocalizedText('materials', preferredLanguage)} ${materialLayers}`, 20, y, { maxWidth: 150 });
   y += 12;
           
           // Check if we need a new page
@@ -2660,68 +3147,89 @@ function addInspectorReport(doc: jsPDF, project: any, estimate: any) {
   }
   
   // Slope-by-slope Condition Table
+  doc.setFillColor(255, 102, 0);
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(14);
   doc.setFont('helvetica', 'bold');
-  doc.text('SLOPE-BY-SLOPE CONDITIONS', 20, y);
-                doc.setFont('helvetica', 'normal');
-  y += 8;
+  doc.rect(margin, y, pageWidth - 2*margin, 8, 'F');
+  doc.text(getLocalizedText('slope_by_slope_conditions', preferredLanguage), margin + 5, y + 6);
+  y += 15;
+  
+  doc.setTextColor(0, 0, 0);
+  doc.setFontSize(10);
+  doc.setFont('helvetica', 'normal');
   if (project.slopeDamage && project.slopeDamage.length > 0) {
     project.slopeDamage.forEach((damage: any, index: number) => {
-      doc.text(`Slope ${index + 1}: ${damage.slope || 'Not specified'}`, 20, y);
+      doc.text(`${getLocalizedText('slope', preferredLanguage)} ${index + 1}: ${damage.slope || getLocalizedText('not_specified', preferredLanguage)}`, 20, y);
       y += 5;
-      doc.text(`  Damage Type: ${damage.damageType || 'Not specified'}`, 25, y);
+      doc.text(`  ${getLocalizedText('damage_type', preferredLanguage)} ${damage.damageType || getLocalizedText('not_specified', preferredLanguage)}`, 25, y);
               y += 5;
-      doc.text(`  Severity: ${damage.severity || 'Not specified'}`, 25, y);
+      doc.text(`  ${getLocalizedText('severity', preferredLanguage)} ${damage.severity || getLocalizedText('not_specified', preferredLanguage)}`, 25, y);
             y += 5;
-      doc.text(`  Description: ${damage.description || 'No description'}`, 25, y, { maxWidth: 140 });
+      doc.text(`  ${getLocalizedText('description', preferredLanguage)} ${damage.description || getLocalizedText('no_description', preferredLanguage)}`, 25, y, { maxWidth: 140 });
       y += 8;
     });
   } else {
-    doc.text('No slope damage reported', 20, y);
+    doc.text(getLocalizedText('no_slope_damage', preferredLanguage), 20, y);
     y += 8;
   }
   y += 4;
   
   // Roofing Components
+  doc.setFillColor(255, 102, 0);
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(14);
   doc.setFont('helvetica', 'bold');
-  doc.text('ROOFING COMPONENTS ASSESSMENT', 20, y);
+  doc.rect(margin, y, pageWidth - 2*margin, 8, 'F');
+  doc.text(getLocalizedText('roofing_components_assessment', preferredLanguage), margin + 5, y + 6);
+  y += 15;
+  
+  doc.setTextColor(0, 0, 0);
+  doc.setFontSize(10);
   doc.setFont('helvetica', 'normal');
-  y += 8;
-  doc.text(`Felt: ${project.felt || 'Not specified'}`, 20, y);
+  doc.text(`${getLocalizedText('felt', preferredLanguage)} ${project.felt || getLocalizedText('not_specified', preferredLanguage)}`, 20, y);
   y += 6;
-  doc.text(`Ice/Water Shield: ${project.iceWaterShield ? 'Present' : 'Not present'}`, 20, y);
+  doc.text(`${getLocalizedText('ice_water_shield', preferredLanguage)} ${project.iceWaterShield ? getLocalizedText('present', preferredLanguage) : getLocalizedText('not_present', preferredLanguage)}`, 20, y);
   y += 6;
-  doc.text(`Drip Edge: ${project.dripEdge ? 'Present' : 'Not present'}`, 20, y);
+  doc.text(`${getLocalizedText('drip_edge', preferredLanguage)} ${project.dripEdge ? getLocalizedText('present', preferredLanguage) : getLocalizedText('not_present', preferredLanguage)}`, 20, y);
   y += 6;
-  doc.text(`Gutter Apron: ${project.gutterApron ? 'Present' : 'Not present'}`, 20, y);
+  doc.text(`${getLocalizedText('gutter_apron', preferredLanguage)} ${project.gutterApron ? getLocalizedText('present', preferredLanguage) : getLocalizedText('not_present', preferredLanguage)}`, 20, y);
   y += 6;
   if (project.pipeBoots && project.pipeBoots.length > 0) {
     const pipeBootsText = project.pipeBoots.map((boot: any) => `${boot.size} (${boot.quantity})`).join(', ');
-    doc.text(`Pipe Boots: ${pipeBootsText}`, 20, y);
+    doc.text(`${getLocalizedText('pipe_boots', preferredLanguage)} ${pipeBootsText}`, 20, y);
       } else {
-    doc.text('Pipe Boots: None specified', 20, y);
+    doc.text(`${getLocalizedText('pipe_boots', preferredLanguage)} ${getLocalizedText('none_specified', preferredLanguage)}`, 20, y);
   }
   y += 6;
-  const fasciaCondition = project.fascia?.condition || 'Not specified';
-  doc.text(`Fascia Condition: ${fasciaCondition}`, 20, y);
+  const fasciaCondition = project.fascia?.condition || getLocalizedText('not_specified', preferredLanguage);
+  doc.text(`${getLocalizedText('fascia_condition', preferredLanguage)} ${fasciaCondition}`, 20, y);
   y += 6;
-  const gutterCondition = project.gutter?.condition || 'Not specified';
-  doc.text(`Gutter Condition: ${gutterCondition}`, 20, y);
+  const gutterCondition = project.gutter?.condition || getLocalizedText('not_specified', preferredLanguage);
+  doc.text(`${getLocalizedText('gutter_condition', preferredLanguage)} ${gutterCondition}`, 20, y);
   y += 12;
   
   // Inspector Notes & Equipment
+  doc.setFillColor(255, 102, 0);
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(14);
   doc.setFont('helvetica', 'bold');
-  doc.text('INSPECTOR NOTES & EQUIPMENT', 20, y);
+  doc.rect(margin, y, pageWidth - 2*margin, 8, 'F');
+  doc.text(getLocalizedText('inspector_notes_equipment', preferredLanguage), margin + 5, y + 6);
+  y += 15;
+  
+  doc.setTextColor(0, 0, 0);
+  doc.setFontSize(10);
   doc.setFont('helvetica', 'normal');
-  y += 8;
   if (project.accessTools && project.accessTools.length > 0) {
-    doc.text(`Equipment Used: ${project.accessTools.join(', ')}`, 20, y, { maxWidth: 150 });
+    doc.text(`${getLocalizedText('equipment_used', preferredLanguage)} ${project.accessTools.join(', ')}`, 20, y, { maxWidth: 150 });
     y += 8;
     } else {
-    doc.text('Equipment Used: Not specified', 20, y);
+    doc.text(`${getLocalizedText('equipment_used', preferredLanguage)} ${getLocalizedText('not_specified', preferredLanguage)}`, 20, y);
     y += 6;
   }
   if (project.ownerNotes) {
-    doc.text('Owner Notes:', 20, y);
+    doc.text(`${getLocalizedText('owner_notes', preferredLanguage)}`, 20, y);
     y += 6;
     const noteLines = doc.splitTextToSize(project.ownerNotes, 150);
     noteLines.forEach((line: string) => {
@@ -2729,11 +3237,11 @@ function addInspectorReport(doc: jsPDF, project: any, estimate: any) {
       y += 5;
     });
       } else {
-    doc.text('Owner Notes: None provided', 20, y);
+    doc.text(`${getLocalizedText('owner_notes', preferredLanguage)} ${getLocalizedText('none_provided', preferredLanguage)}`, 20, y);
   }
 }
 
-function addInspectorImagePages(doc: jsPDF, uploadedFiles: any[], report?: any) {
+function addInspectorImagePages(doc: jsPDF, uploadedFiles: any[], report?: any, preferredLanguage: string = 'english') {
   // Get annotations from the report
   let annotations: string[] = [];
   if (report && report.annotatedPhotographicEvidence) {
@@ -2760,19 +3268,20 @@ function addInspectorImagePages(doc: jsPDF, uploadedFiles: any[], report?: any) 
     let y = 20;
     
     // Page title
+    doc.setFont('helvetica', 'bold');
     doc.setFontSize(16);
-    doc.setTextColor(33, 53, 153);
-    doc.text(`PHOTOGRAPHIC EVIDENCE ${index + 1}`, 20, y);
+    doc.setTextColor(33, 33, 33);
+    doc.text(`${getLocalizedText('photographic_evidence', preferredLanguage)} ${index + 1}`, 20, y);
     doc.setTextColor(0, 0, 0);
     y += 10;
-    doc.setDrawColor(33, 53, 153);
+    doc.setDrawColor(255, 102, 0);
     doc.setLineWidth(1);
     doc.line(20, y, 190, y);
     y += 15;
     
     // Image annotation
   doc.setFontSize(11);
-    const annotation = annotations[index] || 'Professional inspection photo - analysis pending';
+    const annotation = annotations[index] || getLocalizedText('not_specified', preferredLanguage);
     const annotationLines = doc.splitTextToSize(annotation, 150);
     annotationLines.forEach((line: string) => {
       doc.text(line, 20, y);

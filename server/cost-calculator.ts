@@ -170,10 +170,18 @@ export class RealCostCalculator {
       }
       
       console.log('=== COST CALCULATOR: Building Prompt for Role:', userRole, '===');
-      let prompt = this.buildRolePrompt(userRole, project);
-      console.log('=== COST CALCULATOR: Generated Prompt Preview ===');
-      console.log('Prompt length:', prompt.length, 'characters');
-      console.log('Prompt starts with:', prompt.substring(0, 200), '...');
+      let prompt: string;
+      try {
+        prompt = this.buildRolePrompt(userRole, project);
+        console.log('=== COST CALCULATOR: Generated Prompt Preview ===');
+        console.log('Prompt length:', prompt.length, 'characters');
+        console.log('Prompt starts with:', prompt.substring(0, 200), '...');
+      } catch (promptError) {
+        console.error('=== COST CALCULATOR: Prompt Building Error ===');
+        console.error('Error building prompt:', promptError);
+        console.error('Project data:', JSON.stringify(project, null, 2));
+        throw new Error(`Failed to build prompt for role ${userRole}: ${promptError instanceof Error ? promptError.message : String(promptError)}`);
+      }
 
       // Build Gemini parts array with text and images
       const parts: any[] = [{ text: prompt }];
@@ -672,7 +680,7 @@ Generate a detailed contractor report in JSON format with these exact sections:
     "dimensions": {
       "totalArea": ${project.area || 1200},
       "pitch": "${project.roofPitch || 'Not specified'}",
-      "slopes": ${project.slopeDamage?.length || 1}
+      "slopes": ${Array.isArray(project.slopeDamage) ? project.slopeDamage.length : 1}
     }
   },
   "scopeOfWork": {
@@ -688,12 +696,12 @@ Generate a detailed contractor report in JSON format with these exact sections:
       "Deck inspection and repair preparation"
     ],
     "installationTasks": [
-      ${project.lineItems?.includes('Underlayment & Felt') ? '"Install ' + (project.felt || '15lb') + ' felt underlayment",' : ''}
+      ${Array.isArray(project.lineItems) && project.lineItems.includes('Underlayment & Felt') ? '"Install ' + (project.felt || '15lb') + ' felt underlayment",' : ''}
       ${project.iceWaterShield ? '"Install ice and water shield",' : ''}
       ${project.dripEdge ? '"Install drip edge and trim",' : ''}
       "Install ${project.materialLayers?.[0] || 'roofing materials'}",
-      ${project.lineItems?.includes('Ridge Vents & Ventilation') ? '"Install ridge vents and ventilation",' : ''}
-      ${project.lineItems?.includes('Flashing (All Types)') ? '"Install flashing systems",' : ''}
+      ${Array.isArray(project.lineItems) && project.lineItems.includes('Ridge Vents & Ventilation') ? '"Install ridge vents and ventilation",' : ''}
+      ${Array.isArray(project.lineItems) && project.lineItems.includes('Flashing (All Types)') ? '"Install flashing systems",' : ''}
       "Final inspection and quality control"
     ],
     "finishingTasks": [
@@ -720,12 +728,12 @@ Generate a detailed contractor report in JSON format with these exact sections:
   },
   "materialBreakdown": {
     "lineItems": [
-      ${project.lineItems?.map((item: string) => `{
+      ${Array.isArray(project.lineItems) && project.lineItems.length > 0 ? project.lineItems.map((item: string) => `{
         "item": "${item}",
         "quantity": ${item.includes('Shingles') ? (project.area || 1200) / 100 : item.includes('Underlayment') ? (project.area || 1200) / 100 : 1},
         "unit": "${item.includes('Shingles') || item.includes('Underlayment') ? 'squares' : item.includes('Linear') ? 'linear feet' : 'each'}",
         "notes": "Based on project specifications"
-      }`).join(',') || `{
+      }`).join(',') : `{
         "item": "Asphalt Shingles",
         "quantity": ${(project.area || 1200) / 100},
         "unit": "squares",

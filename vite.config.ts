@@ -22,6 +22,7 @@ export default defineConfig({
       "@shared": path.resolve(import.meta.dirname, "shared"),
       "@assets": path.resolve(import.meta.dirname, "attached_assets"),
     },
+    conditions: ["import", "module", "browser", "default"],
   },
   root: path.resolve(import.meta.dirname, "client"),
   build: {
@@ -32,6 +33,11 @@ export default defineConfig({
     fs: {
       strict: true,
       deny: ["**/.*"],
+    },
+  },
+  optimizeDeps: {
+    esbuildOptions: {
+      conditions: ["import", "module", "browser", "default"],
     },
   },
 });

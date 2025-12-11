@@ -9,7 +9,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { useLocation } from "wouter";
 import LoginDialog from "@/components/login-dialog";
-import { Home, Building, Wrench, TrafficCone, MapPin } from "lucide-react";
+import { Home, Building, Wrench, TrafficCone, MapPin, ArrowLeft } from "lucide-react";
 import { getUserReports } from "@/lib/pdf-storage";
 
 export default function ComparePage() {
@@ -87,6 +87,14 @@ export default function ComparePage() {
       <Header />
       <LoginDialog open={loginOpen} onOpenChange={setLoginOpen} message={loginMessage} />
       <main className="flex-1 flex flex-col items-center py-8 px-2">
+        <Button 
+          variant="outline" 
+          className="mb-6 self-start ml-4 md:ml-0" 
+          onClick={() => navigate("/")}
+        >
+          <ArrowLeft className="mr-2 h-4 w-4" />
+          Go Back to Homepage
+        </Button>
         <h1 className="text-2xl font-bold mb-4">Compare Estimates</h1>
         <p className="text-neutral-600 mb-8 text-center max-w-xl">Select two estimates to compare.</p>
         {/* Filter Bar */}

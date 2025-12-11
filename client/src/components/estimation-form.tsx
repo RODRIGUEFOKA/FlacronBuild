@@ -102,7 +102,9 @@ const projectSchema = z.object({
     "portuguese",
     "chinese",
     "japanese"
-  ]).optional(),
+  ], {
+    required_error: "Preferred language is required",
+  }),
   preferredCurrency: z.enum([
     "USD",
     "EUR", 
@@ -111,7 +113,9 @@ const projectSchema = z.object({
     "AUD",
     "JPY",
     "CHF"
-  ]).optional(),
+  ], {
+    required_error: "Preferred currency is required",
+  }),
 
   // Homeowner-specific fields
   homeownerInfo: z.object({
@@ -543,8 +547,8 @@ export default function EstimationForm({ userRole, onEstimateGenerated, onReport
       lineItems: [],
       localPermit: false,
       // Shared defaults for all roles
-      preferredLanguage: undefined,
-      preferredCurrency: undefined,
+      preferredLanguage: "english",
+      preferredCurrency: "USD",
       
       // Homeowner defaults
       homeownerInfo: {
@@ -885,7 +889,11 @@ export default function EstimationForm({ userRole, onEstimateGenerated, onReport
     console.log('Complete form data:', formData);
     
     // Check for required fields
-    const requiredFields = ['name', 'userRole', 'projectType', 'location', 'structureType', 'roofPitch', 'roofAge', 'materialLayers'];
+    // Currency is not required for insurance adjusters as their reports don't contain currency amounts
+    const requiredFields = ['name', 'userRole', 'projectType', 'location', 'structureType', 'roofPitch', 'roofAge', 'materialLayers', 'preferredLanguage'];
+    if (formData.userRole !== 'insurance-adjuster') {
+      requiredFields.push('preferredCurrency');
+    }
     const missingFields = requiredFields.filter(field => {
       const value = formData[field as keyof ProjectFormData];
       if (field === 'location') {
@@ -1905,7 +1913,7 @@ export default function EstimationForm({ userRole, onEstimateGenerated, onReport
                            name="preferredLanguage"
                            render={({ field }) => (
                              <FormItem>
-                               <FormLabel>Preferred Language</FormLabel>
+                               <FormLabel>Preferred Language <span className="text-red-500">*</span></FormLabel>
                                <Select
                                  value={field.value}
                                  onValueChange={field.onChange}
@@ -1933,7 +1941,7 @@ export default function EstimationForm({ userRole, onEstimateGenerated, onReport
                            name="preferredCurrency"
                            render={({ field }) => (
                              <FormItem>
-                               <FormLabel>Preferred Currency</FormLabel>
+                               <FormLabel>Preferred Currency <span className="text-red-500">*</span></FormLabel>
                                <Select
                                  value={field.value}
                                  onValueChange={field.onChange}
@@ -2134,7 +2142,7 @@ export default function EstimationForm({ userRole, onEstimateGenerated, onReport
                            name="preferredLanguage"
                            render={({ field }) => (
                              <FormItem>
-                               <FormLabel>Preferred Language</FormLabel>
+                               <FormLabel>Preferred Language <span className="text-red-500">*</span></FormLabel>
                                <Select
                                  value={field.value}
                                  onValueChange={field.onChange}
@@ -2162,7 +2170,7 @@ export default function EstimationForm({ userRole, onEstimateGenerated, onReport
                            name="preferredCurrency"
                            render={({ field }) => (
                              <FormItem>
-                               <FormLabel>Preferred Currency</FormLabel>
+                               <FormLabel>Preferred Currency <span className="text-red-500">*</span></FormLabel>
                                <Select
                                  value={field.value}
                                  onValueChange={field.onChange}
@@ -2284,7 +2292,7 @@ export default function EstimationForm({ userRole, onEstimateGenerated, onReport
                            name="preferredLanguage"
                            render={({ field }) => (
                              <FormItem>
-                               <FormLabel>Preferred Language</FormLabel>
+                               <FormLabel>Preferred Language <span className="text-red-500">*</span></FormLabel>
                                <Select
                                  value={field.value}
                                  onValueChange={field.onChange}
@@ -2312,7 +2320,7 @@ export default function EstimationForm({ userRole, onEstimateGenerated, onReport
                            name="preferredCurrency"
                            render={({ field }) => (
                              <FormItem>
-                               <FormLabel>Preferred Currency</FormLabel>
+                               <FormLabel>Preferred Currency <span className="text-red-500">*</span></FormLabel>
                                <Select
                                  value={field.value}
                                  onValueChange={field.onChange}
@@ -2678,13 +2686,14 @@ export default function EstimationForm({ userRole, onEstimateGenerated, onReport
                        </div>
                        
                        {/* Language and Currency Preferences */}
-                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                       {/* Currency field is not needed for insurance adjusters as their reports don't contain currency amounts */}
+                       <div className={`grid gap-4 ${selectedRole === "insurance-adjuster" ? "grid-cols-1" : "grid-cols-1 md:grid-cols-2"}`}>
                          <FormField
                            control={form.control}
                            name="preferredLanguage"
                            render={({ field }) => (
                              <FormItem>
-                               <FormLabel>Preferred Language</FormLabel>
+                               <FormLabel>Preferred Language <span className="text-red-500">*</span></FormLabel>
                                <Select
                                  value={field.value}
                                  onValueChange={field.onChange}
@@ -2707,34 +2716,36 @@ export default function EstimationForm({ userRole, onEstimateGenerated, onReport
                              </FormItem>
                            )}
                          />
-                         <FormField
-                           control={form.control}
-                           name="preferredCurrency"
-                           render={({ field }) => (
-                             <FormItem>
-                               <FormLabel>Preferred Currency</FormLabel>
-                               <Select
-                                 value={field.value}
-                                 onValueChange={field.onChange}
-                                 disabled={isEstimating}
-                               >
-                                 <FormControl>
-                                   <SelectTrigger>
-                                     <SelectValue placeholder="Select currency" />
-                                   </SelectTrigger>
-                                 </FormControl>
-                                 <SelectContent>
-                                   {currencyOptions.map((currency) => (
-                                     <SelectItem key={currency.value} value={currency.value}>
-                                       {currency.label}
-                                     </SelectItem>
-                                   ))}
-                                 </SelectContent>
-                               </Select>
-                               <FormMessage />
-                             </FormItem>
-                           )}
-                         />
+                         {selectedRole !== "insurance-adjuster" && (
+                           <FormField
+                             control={form.control}
+                             name="preferredCurrency"
+                             render={({ field }) => (
+                               <FormItem>
+                                 <FormLabel>Preferred Currency <span className="text-red-500">*</span></FormLabel>
+                                 <Select
+                                   value={field.value}
+                                   onValueChange={field.onChange}
+                                   disabled={isEstimating}
+                                 >
+                                   <FormControl>
+                                     <SelectTrigger>
+                                       <SelectValue placeholder="Select currency" />
+                                     </SelectTrigger>
+                                   </FormControl>
+                                   <SelectContent>
+                                     {currencyOptions.map((currency) => (
+                                       <SelectItem key={currency.value} value={currency.value}>
+                                         {currency.label}
+                                       </SelectItem>
+                                     ))}
+                                   </SelectContent>
+                                 </Select>
+                                 <FormMessage />
+                               </FormItem>
+                             )}
+                           />
+                         )}
                        </div>
                      </div>
                    )}

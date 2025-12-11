@@ -7,7 +7,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { Card } from "@/components/ui/card";
-import { Eye, Pencil, Trash2, Home, Building, Wrench, TrafficCone, MapPin, Download } from "lucide-react";
+import { Eye, Pencil, Trash2, Home, Building, Wrench, TrafficCone, MapPin, Download, ArrowLeft } from "lucide-react";
 import { useLocation } from "wouter";
 import LoginDialog from "@/components/login-dialog";
 import { getUserPDFs, getUserReports, downloadReportPDF, formatFileSize } from "@/lib/pdf-storage";
@@ -129,6 +129,14 @@ export default function UserDashboardPage() {
       <Header />
       <LoginDialog open={loginOpen} onOpenChange={setLoginOpen} message={loginMessage} />
       <main className="flex-1 flex flex-col items-center py-8 px-2">
+        <Button 
+          variant="outline" 
+          className="mb-6 self-start ml-4 md:ml-0" 
+          onClick={() => navigate("/")}
+        >
+          <ArrowLeft className="mr-2 h-4 w-4" />
+          Go Back to Homepage
+        </Button>
         <h1 className="text-2xl font-bold mb-2">My Estimates & Reports</h1>
         <p className="text-neutral-600 mb-8 text-center max-w-xl">
           Here are your recent project reports and estimates. Each report contains your form data, AI analysis, and downloadable PDF.

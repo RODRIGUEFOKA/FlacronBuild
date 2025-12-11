@@ -242,12 +242,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }
       };
       
+      // Validate that data can be serialized to JSON
+      try {
+        JSON.stringify(formInputDataForStorage);
+        JSON.stringify(geminiResponseForStorage);
+        JSON.stringify(realEstimate.report);
+      } catch (serializationError) {
+        console.error('=== BACKEND: JSON Serialization Error ===');
+        console.error('Serialization error:', serializationError);
+        throw new Error(`Data serialization failed: ${serializationError instanceof Error ? serializationError.message : String(serializationError)}`);
+      }
+      
       console.log('Form input data size:', JSON.stringify(formInputDataForStorage).length, 'characters');
       console.log('Gemini response size:', JSON.stringify(geminiResponseForStorage).length, 'characters');
       
+      // Validate estimate data before creating
+      if (typeof realEstimate.totalCost !== 'number' && realEstimate.totalCost !== undefined) {
+        console.warn('Warning: totalCost is not a number:', typeof realEstimate.totalCost, realEstimate.totalCost);
+      }
+      
       // Create estimate with all data
       console.log('=== BACKEND: Creating Estimate Record ===');
-      const savedEstimate = await storage.createEstimate({
+      const estimateData = {
         projectId,
         totalCost: (realEstimate.totalCost || 0).toString(),
         materialsCost: (realEstimate.materialsCost || 0).toString(),
@@ -258,7 +274,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
         report: realEstimate.report,
         formInputData: formInputDataForStorage,
         geminiResponse: geminiResponseForStorage
-      });
+      };
+      
+      // Validate against schema
+      try {
+        insertEstimateSchema.parse(estimateData);
+      } catch (schemaError) {
+        console.error('=== BACKEND: Schema Validation Error ===');
+        console.error('Schema error:', schemaError);
+        if (schemaError instanceof z.ZodError) {
+          console.error('Validation errors:', schemaError.errors);
+        }
+        throw new Error(`Estimate data validation failed: ${schemaError instanceof Error ? schemaError.message : String(schemaError)}`);
+      }
+      
+      const savedEstimate = await storage.createEstimate(estimateData);
 
       console.log('=== BACKEND: Estimate Created Successfully ===');
       console.log('Saved estimate ID:', savedEstimate.id);
@@ -280,8 +310,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
       console.error("=== BACKEND: Cost Estimation Error ===");
       console.error("Error type:", typeof error);
       console.error("Error message:", error instanceof Error ? error.message : String(error));
+      console.error("Error stack:", error instanceof Error ? error.stack : 'No stack trace');
       console.error("Full error:", error);
-      res.status(500).json({ message: "Failed to generate estimate" });
+      
+      // Return more detailed error information in development
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      const isDevelopment = process.env.NODE_ENV === 'development';
+      
+      res.status(500).json({ 
+        message: "Failed to generate estimate",
+        error: isDevelopment ? errorMessage : undefined,
+        details: isDevelopment && error instanceof Error ? error.stack : undefined
+      });
     }
   });
 
