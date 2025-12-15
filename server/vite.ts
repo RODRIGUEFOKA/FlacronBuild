@@ -87,19 +87,29 @@ export function serveStatic(app: Express) {
 
   // Configure express.static with proper MIME types
   app.use(express.static(distPath, {
-    setHeaders: (res, path) => {
-      if (path.endsWith('.css')) {
+    setHeaders: (res, filePath) => {
+      if (filePath.endsWith('.css')) {
         res.setHeader('Content-Type', 'text/css');
-      } else if (path.endsWith('.js')) {
+      } else if (filePath.endsWith('.js')) {
         res.setHeader('Content-Type', 'application/javascript');
-      } else if (path.endsWith('.html')) {
+      } else if (filePath.endsWith('.html')) {
         res.setHeader('Content-Type', 'text/html');
       }
     }
   }));
 
-  // fall through to index.html if the file doesn't exist
-  app.use("*", (_req, res) => {
-    res.sendFile(path.resolve(distPath, "index.html"));
+  // fall through to index.html for all non-API routes
+  // This must be last so API routes are matched first
+  app.use("*", (req, res, next) => {
+    // Skip API routes - they should be handled by registerRoutes
+    if (req.path.startsWith("/api")) {
+      return next();
+    }
+    // Only serve index.html for GET requests (or HEAD for favicon, etc.)
+    if (req.method === "GET" || req.method === "HEAD") {
+      res.sendFile(path.resolve(distPath, "index.html"));
+    } else {
+      next();
+    }
   });
 }

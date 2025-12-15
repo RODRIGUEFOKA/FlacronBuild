@@ -55,6 +55,7 @@ function addConditionalField(doc: jsPDF, label: string, value: any, margin: numb
 }
 
 // Helper function to format currency based on user preference
+// Assumes input amount is in USD and converts to target currency
 function formatCurrency(amount: number, currency: string = 'USD'): string {
   const currencySymbols: { [key: string]: string } = {
     'USD': '$',
@@ -66,8 +67,31 @@ function formatCurrency(amount: number, currency: string = 'USD'): string {
     'CHF': 'CHF'
   };
   
+  // Currency conversion rates (as of 2024, relative to USD)
+  const conversionRates: { [key: string]: number } = {
+    'USD': 1.0,
+    'EUR': 0.87,
+    'GBP': 0.79,
+    'CAD': 1.35,
+    'AUD': 1.52,
+    'JPY': 149.50,
+    'CHF': 0.88
+  };
+  
   const symbol = currencySymbols[currency] || '$';
-  return `${symbol}${amount.toLocaleString()}`;
+  const rate = conversionRates[currency] || 1.0;
+  
+  // Convert from USD to target currency
+  const convertedAmount = amount * rate;
+  
+  // Format with appropriate decimal places
+  if (currency === 'JPY') {
+    // Japanese Yen doesn't use decimals
+    return `${symbol}${Math.round(convertedAmount).toLocaleString()}`;
+  } else {
+    // Other currencies use 2 decimal places
+    return `${symbol}${convertedAmount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  }
 }
 
 // Helper function to get language-specific text
@@ -1629,6 +1653,22 @@ function addContractorReport(doc: jsPDF, project: any, estimate: any) {
     ]
   };
 
+  // Helper function to parse range strings (e.g., "5-8" or "6-8") and return average
+  const parseRange = (value: string | number | undefined, defaultValue: number): number => {
+    if (typeof value === 'number') return value;
+    if (typeof value === 'string') {
+      const match = value.match(/(\d+)\s*-\s*(\d+)/);
+      if (match) {
+        const min = parseInt(match[1]);
+        const max = parseInt(match[2]);
+        return Math.round((min + max) / 2); // Return average
+      }
+      const singleNum = parseInt(value);
+      if (!isNaN(singleNum)) return singleNum;
+    }
+    return defaultValue;
+  };
+
   // Use form data for labor requirements with Gemini enhancements
   const laborRequirements = {
     crewSize: project.laborNeeds?.workerCount || report.laborRequirements?.crewSize || '3-5',
@@ -1647,6 +1687,12 @@ function addContractorReport(doc: jsPDF, project: any, estimate: any) {
     ]
   };
 
+  // Calculate total hours based on crew size and estimated days
+  // Formula: average crew size × average days × 8 hours per day
+  const averageCrewSize = parseRange(laborRequirements.crewSize, 4);
+  const averageDays = parseRange(laborRequirements.estimatedDays, project.jobType === 'full-replace' ? 6.5 : 3);
+  const calculatedTotalHours = Math.round(averageCrewSize * averageDays * 8);
+
   // Create material breakdown from form selections
   const materialBreakdown = report.materialBreakdown?.lineItems || 
     (project.lineItems?.map((item: string) => ({
@@ -1659,7 +1705,16 @@ function addContractorReport(doc: jsPDF, project: any, estimate: any) {
     })) || []);
 
   // Use Gemini cost estimates if available, otherwise calculate from form data
-  const costEstimates = report.costEstimates || {
+  const costEstimates = report.costEstimates ? {
+    ...report.costEstimates,
+    labor: {
+      ...report.costEstimates.labor,
+      // Always use calculated hours based on crew size and days for consistency
+      totalHours: calculatedTotalHours,
+      // Recalculate labor total based on corrected hours
+      total: (report.costEstimates.labor?.ratePerHour || (project.laborNeeds?.steepAssist ? 75 : 65)) * calculatedTotalHours
+    }
+  } : {
     materials: {
       total: (project.area || 1200) * (project.materialPreference === 'luxury' ? 8 : project.materialPreference === 'eco' ? 4 : 6),
       breakdown: [
@@ -1672,9 +1727,9 @@ function addContractorReport(doc: jsPDF, project: any, estimate: any) {
       ]
     },
     labor: {
-      total: (project.area || 1200) * (project.laborNeeds?.steepAssist ? 4 : 3),
+      total: (project.laborNeeds?.steepAssist ? 75 : 65) * calculatedTotalHours,
       ratePerHour: project.laborNeeds?.steepAssist ? 75 : 65,
-      totalHours: Math.ceil((project.area || 1200) / (project.laborNeeds?.steepAssist ? 80 : 100))
+      totalHours: calculatedTotalHours // Use calculated hours based on crew size and days
     },
     equipment: {
       total: project.laborNeeds?.steepAssist ? 800 : 500,
@@ -2447,7 +2502,47 @@ function addHomeownerReport(doc: jsPDF, project: any, estimate: any) {
     yPos = 20;
   }
 
-  const budgetGuidance = report.budgetGuidance || {
+  // Helper to extract numeric value from formatted currency string (if Gemini returns formatted strings)
+  const parseCurrencyValue = (value: string | number): number => {
+    if (typeof value === 'number') return value;
+    // Remove currency symbols, commas, and spaces, then parse
+    const numericStr = String(value).replace(/[^\d.-]/g, '');
+    const num = parseFloat(numericStr);
+    return isNaN(num) ? 0 : num;
+  };
+
+  // If Gemini returned budgetGuidance, check if values need conversion
+  // Gemini should return values in preferredCurrency, but if they're strings with USD symbols, parse and convert
+  let budgetGuidanceData = report.budgetGuidance;
+  if (budgetGuidanceData && preferredCurrency !== 'USD') {
+    // Check if values appear to be in USD (have $ symbol) and need conversion
+    const repairsStr = budgetGuidanceData.estimatedRange?.repairs || '';
+    const partialStr = budgetGuidanceData.estimatedRange?.partialReplacement || '';
+    const fullStr = budgetGuidanceData.estimatedRange?.fullReplacement || '';
+    
+    // If strings contain $ symbol, they're likely USD values that need conversion
+    if (repairsStr.includes('$') || partialStr.includes('$') || fullStr.includes('$')) {
+      // Parse and convert
+      const repairsMatch = repairsStr.match(/\$?([\d,]+)\s*-\s*\$?([\d,]+)/);
+      if (repairsMatch) {
+        const low = parseCurrencyValue(repairsMatch[1]);
+        const high = parseCurrencyValue(repairsMatch[2]);
+        budgetGuidanceData.estimatedRange.repairs = `${formatCurrency(low, preferredCurrency)} - ${formatCurrency(high, preferredCurrency)}`;
+      }
+      
+      if (partialStr.includes('$')) {
+        const partialVal = parseCurrencyValue(partialStr);
+        budgetGuidanceData.estimatedRange.partialReplacement = formatCurrency(partialVal, preferredCurrency);
+      }
+      
+      if (fullStr.includes('$')) {
+        const fullVal = parseCurrencyValue(fullStr);
+        budgetGuidanceData.estimatedRange.fullReplacement = formatCurrency(fullVal, preferredCurrency);
+      }
+    }
+  }
+
+  const budgetGuidance = budgetGuidanceData || {
     estimatedRange: {
       repairs: project.urgency === 'high' ? `${formatCurrency(2000, preferredCurrency)} - ${formatCurrency(8000, preferredCurrency)}` : project.urgency === 'medium' ? `${formatCurrency(1000, preferredCurrency)} - ${formatCurrency(4000, preferredCurrency)}` : `${formatCurrency(500, preferredCurrency)} - ${formatCurrency(2000, preferredCurrency)}`,
       partialReplacement: formatCurrency(Math.round((project.area || 1200) * (project.budgetStyle === 'premium' ? 8 : project.budgetStyle === 'basic' ? 4 : 6) * 0.5), preferredCurrency),
